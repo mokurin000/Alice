@@ -164,7 +164,7 @@ def Alice():
                     else:
                         print(f"[red] FAILURE: {exit_code} [/red]")
                         print(f"[gray]{stderr_decoded}[/gray]")
-                        output_current_cmd += f"Aborting execution\n"
+                        output_current_cmd += "Aborting execution\n"
 
                     commands_output += output_current_cmd
                 else:
@@ -173,7 +173,7 @@ def Alice():
                     break
 
             # Ask the user if they want to send the output to the API
-            user_ack = Prompt.ask(f"Send back to Alice? [y/response/(no)]")
+            user_ack = Prompt.ask("Send back to Alice? [y/response/(no)]")
 
             commands_output += f"\nThe last task given (does the output give you the information needed?) was: {user_query}. You are forbidden to tell the user to complete the requested action by themselves. Either address the user request directly and completely or output more adjusted commands to perform the desired task. Conform to the following grammar:{grammar}"
 
