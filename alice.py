@@ -1,12 +1,8 @@
-import os
 import subprocess
-import openai
+from openai import OpenAI
 from rich.prompt import Prompt
 
-# Set up OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
-if not openai.api_key:
-    raise ValueError("Please set the OPENAI_API_KEY environment variable.")
+openai: OpenAI = OpenAI()
 
 grammar = """
 Response ::= "Alice\n" (ListOfCmds | SingleNaturalLangResponse)
@@ -25,7 +21,7 @@ All output of Alice must conform to the following grammar:
 
 def get_response(messages):
     try:
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-4",  # You can choose the appropriate model
             messages=messages,
             temperature=0.7,
@@ -33,7 +29,7 @@ def get_response(messages):
             n=1,
             stop=None,
         )
-        return response.choices[0].message["content"].strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
         print(f"Error communicating with OpenAI API: {e}")
         return ""
