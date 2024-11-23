@@ -1,8 +1,11 @@
+import os
 import subprocess
 from openai import OpenAI
 from rich.prompt import Prompt
 
 openai: OpenAI = OpenAI()
+
+model = os.environ.get("ALICE_MODEL", "gpt-4o")
 
 grammar = """
 Response ::= "Alice\n" (ListOfCmds | SingleNaturalLangResponse)
@@ -22,7 +25,7 @@ All output of Alice must conform to the following grammar:
 def get_response(messages):
     try:
         response = openai.chat.completions.create(
-            model="gpt-4",  # You can choose the appropriate model
+            model=model,  # You can choose the appropriate model
             messages=messages,
             temperature=0.7,
             max_tokens=1500,
