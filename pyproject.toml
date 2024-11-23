@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "openai>=1.55.0",
-    "rich>=13.9.4",
-]
+dependencies = ["openai>=1.55.0", "rich>=13.9.4"]
+
+[project.scripts]
+alice = "alice.__main__:Alice"
