@@ -9,7 +9,7 @@ openai: OpenAI = OpenAI()
 
 model = os.environ.get("ALICE_MODEL", "gpt-4o")
 max_token = int(os.environ.get("ALICE_MAX_TOKEN", "1500"))
-temperature = float(os.environ.get("ALICE_TEMPERATURE"), "0.7")
+temperature = float(os.environ.get("ALICE_TEMPERATURE", "0.7"))
 
 
 
