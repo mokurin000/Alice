@@ -2,15 +2,18 @@ import os
 import subprocess
 from openai import OpenAI
 from rich.prompt import Prompt
+from rich.console import Console
 
 from alice.const import magic_template_2, grammar
+
+console = Console()
+print = console.print
 
 openai: OpenAI = OpenAI()
 
 model = os.environ.get("ALICE_MODEL", "gpt-4o")
 max_token = int(os.environ.get("ALICE_MAX_TOKEN", "1500"))
 temperature = float(os.environ.get("ALICE_TEMPERATURE", "0.7"))
-
 
 
 def get_response(messages):
